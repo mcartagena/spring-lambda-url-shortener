@@ -8,3 +8,8 @@ I'll follow the next architecture:
 ## Reference
 
 I have followed a nice video course for this approach [Building Serverless Applications with Spring and AWS](https://www.packtpub.com/product/building-serverless-applications-with-spring-and-aws-video/9781788393966)
+
+### Commands
+
+curl -H "Content-Type: application/json" localhost:8080/generateShortcode -d '"https://www.g
+oogle.com"'
