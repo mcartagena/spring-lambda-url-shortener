@@ -4,3 +4,7 @@ I'll develop the wrapper URL shortener using Spring Cloud functions. In this rep
 I'll follow the next architecture:
 
 ![Application Architecture](project-spring-cloud.png "Architecture")
+
+## Reference
+
+I have followed a nice video course for this approach [Building Serverless Applications with Spring and AWS](https://www.packtpub.com/product/building-serverless-applications-with-spring-and-aws-video/9781788393966)
