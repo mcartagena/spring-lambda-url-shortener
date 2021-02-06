@@ -10,8 +10,11 @@ import com.amazonaws.services.dynamodbv2.document.UpdateItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.spec.UpdateItemSpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
+import com.amazonaws.services.dynamodbv2.model.GetItemResult;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+import com.amazonaws.services.kms.model.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,5 +52,25 @@ public class DynamoDBURLDAO implements UrlDAO{
     amazonDynamoDB.putItem(request);
 		
 	}
+
+    @Override
+    public String getUrl(String shortCode) {
+      Map<String, AttributeValue> keyToGet = new HashMap();
+
+      keyToGet.put("shortCode", new AttributeValue(shortCode));
+
+      GetItemRequest request = new GetItemRequest()
+        .withKey(keyToGet)
+        .withTableName(URL_TABLE_NAME);
+
+      GetItemResult result = amazonDynamoDB.getItem(request);
+
+      if(result.getItem() == null){
+        throw new NotFoundException("Couldn't find the shortcode mapping");
+      }
+
+      return result.getItem().get("url").getS();
+      
+    }
   
 }
