@@ -11,5 +11,4 @@ I have followed a nice video course for this approach [Building Serverless Appli
 
 ### Commands
 
-curl -H "Content-Type: application/json" localhost:8080/generateShortcode -d '"https://www.g
-oogle.com"'
+curl -H "Content-Type: application/json" localhost:8080/generateShortcode -d '"https://www.google.com"'
